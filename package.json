@@ -1,0 +1,14 @@
+{
+  "name": "nl.audio-master",
+  "version": "1.0.0",
+  "description": "Audio for the master",
+  "main": "app.js",
+  "scripts": {
+    "test": "testing123"
+  },
+  "keywords": [
+    "audio"
+  ],
+  "author": "Joran van Erk",
+  "license": "ISC"
+}
