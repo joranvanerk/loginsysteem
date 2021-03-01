@@ -6,7 +6,7 @@ if (isset($_GET["content"])) {
 }
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="./index.php?content=home">Audio-Master</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,6 +33,14 @@ if (isset($_GET["content"])) {
             <li><a class="dropdown-item <?php if ( $active == "usb" ) { echo "active"; }?>" href="./index.php?content=usb">USB</a></li>
           </ul>
         </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link <?php if ( $active == "register" || $active == "" ) { echo "active"; }?>" href="./index.php?content=register">Registreer</a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link <?php if ( $active == "login" ) { echo "active"; }?>" href="./index.php?content=login">Aanmelden</a>
+      </li>
       </ul>
     </div>
   </div>
