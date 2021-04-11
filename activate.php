@@ -16,7 +16,7 @@ if (!(isset($_GET["content"]) && isset($_GET["id"]) && isset($_GET["pwh"]))){
                     <div id="passwordhelp" class="form-text">Kies een veilig wachtwoord.</div>
 
                     <label for="inputpasswordcheck" class="form-label">Herhaal het wachtwoord:</label>
-                    <input name="passwordcheck" type="password" class="form-control" id="inputpasswordcheck" aria-describedby="passwordcheckhelp">
+                    <input name="passwordCheck" type="password" class="form-control" id="inputpasswordcheck" aria-describedby="passwordcheckhelp">
                     <div id="passwordcheckhelp" class="form-text">Voer nogmaals uw wachtwoord in.</div>
                 </div>
                 <input type="hidden" name="id" value="<?php echo $_GET["id"]; ?>">
