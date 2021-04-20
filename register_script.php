@@ -1,12 +1,11 @@
 <?php 
 
-    
+include("./connect_db.php");    
 
 
     if (empty($_POST["email"])) {
         header("location: ./index.php?content=message&alert=no-email");
     } else {
-        include("./connect_db.php");
         include("./functions.php");
 
         $email = sanitize($_POST["email"]);
@@ -18,10 +17,11 @@
         if (mysqli_num_rows($result)){
             header("Location: ./index.php?content=message&alert=emailexists");
         }else {
-            $password = "geheim";
-            $password_hash = password_hash($password, PASSWORD_BCRYPT);
+            // maakt wachtwoord en geeft hem terug in een array
+            // de functie am_password_hash maakt het wachtwoord aan
+            $array = am_password_hash();
 
-            $sql = "INSERT INTO `register` (`id`, `email`, `password`, `userrole`)VALUES (NULL, '$email', '$password_hash', 'customer')";
+            $sql = "INSERT INTO `register` (`id`, `email`, `password`, `userrole`, `activated`)VALUES (NULL, '$email', '{$array["password_hash"]}', 'customer', 0)";
 
             if (mysqli_query($conn, $sql)) {
 
@@ -49,7 +49,7 @@
                     <br>
                     <br>
                     <div style="text-align: center;">
-                    <a href="http://www.audio-master.nl/index.php?content=activate&id=' . $id . '&pwh=' . $password_hash . '" class="btn btn-primary btn-lg">Account activeren</a>
+                    <a href="http://www.audio-master.nl/index.php?content=activate&id=' . $id . '&pwh=' . $array["password_hash"] . '" class="btn btn-primary btn-lg">Account activeren</a>
                     <p>Deel deze koppeling niet met derden.</p></div>
                     <br>
                     <br>
@@ -79,7 +79,7 @@
 
                 mail($to, $subject, $message, $headers);
 
-                header("Location: ./index.php?content=message&alert=register-success");
+                echo '<meta http-equiv="refresh" content="0; URL=./index.php?content=message&alert=register-success">';
             }else {
                 header("Location: ./index.php?content=message&alert=registererror");
             }
