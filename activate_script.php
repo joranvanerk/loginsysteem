@@ -27,7 +27,7 @@ if (empty($_POST["password"]) || empty($_POST["passwordCheck"])){
             if (!strcmp($record["password"], $pwh)){
                 $password_hash = password_hash($password, PASSWORD_BCRYPT);
         
-                $updatesql = "UPDATE `register` SET `password`='$password_hash', `password` = 1 WHERE `register`.`id`=$id AND `password`='$pwh'";
+                $updatesql = "UPDATE `register` SET `password`='$password_hash', `activated` = 1 WHERE `register`.`id`=$id AND `password`='$pwh'";
         
                 if(mysqli_query($conn, $updatesql)){
                     header("location: ./index.php?content=message&alert=updatesuccess");

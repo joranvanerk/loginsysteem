@@ -34,7 +34,7 @@
           echo '<div class="alert alert-primary mt-5 w-50 mx-auto text-center" role="alert">
           U heeft geen rechten op deze pagina.
         </div>';
-        header("Refresh: 3; ./index.php?content=register");
+        header("Refresh: 3; ./index.php?content=login");
       break;
         case "password-empty" :
           echo '<div class="alert alert-primary mt-5 w-50 mx-auto text-center" role="alert">
@@ -77,6 +77,36 @@
           Uw activatie link gegevens zijn niet correct, registreer opnieuw!
         </div>';
         header("Refresh: 3; ./index.php?content=register");
+      break;
+        case "loginformempty" :
+          echo '<div class="alert alert-danger mt-5 w-50 mx-auto text-center" role="alert">
+          U heeft een veld niet juist ingevuld, probeer het opnieuw!
+        </div>';
+        header("Refresh: 3; ./index.php?content=login");
+      break;
+        case "email-unknown" :
+          echo '<div class="alert alert-danger mt-5 w-50 mx-auto text-center" role="alert">
+          Email niet bekend!
+        </div>';
+        header("Refresh: 3; ./index.php?content=login");
+      break;
+        case "not-active" :
+          echo '<div class="alert alert-danger mt-5 w-50 mx-auto text-center" role="alert">
+          Uw account is niet actief, controleer uw email!
+        </div>';
+        header("Refresh: 3; ./index.php?content=login");
+      break;
+        case "mno" :
+          echo '<div class="alert alert-danger mt-5 w-50 mx-auto text-center" role="alert">
+          Uw ingevoerde gegevens zijn niet correct, probeer het opnieuw!
+        </div>';
+        header("Refresh: 3; ./index.php?content=login");
+      break;
+        case "logout" :
+          echo '<div class="alert alert-danger mt-5 w-50 mx-auto text-center" role="alert">
+          U bent uitgelogd.
+        </div>';
+        header("Refresh: 3; ./index.php?content=login");
       break;
         default;
             header("Location: ./index.php?content=home");

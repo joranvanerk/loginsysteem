@@ -14,9 +14,40 @@ if (isset($_GET["content"])) {
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link <?php if ( $active == "home" || $active == "" ) { echo "active"; }?>" aria-current="page" href="./index.php?content=home">Home</a>
-        </li>
+      <?php if(isset($_SESSION["id"])){
+        switch($_SESSION["userrole"]){
+          case 'admin':
+            echo '<li class="nav-item">
+        <a class="nav-link'; echo (in_array($active, ["a-home", ""])) ? "active" : "";  echo '" aria-current="page" href="./index.php?content=a-home">Home</a>
+      </li>';
+          break;
+          case 'root':
+            echo '<li class="nav-item">
+        <a class="nav-link'; echo (in_array($active, ["r-home", ""])) ? "active" : "";  echo '" aria-current="page" href="./index.php?content=r-home">Home</a>
+      </li>';
+          break;
+          case 'customer':
+            echo '<li class="nav-item">
+        <a class="nav-link'; echo (in_array($active, ["c-home", ""])) ? "active" : "";  echo '" aria-current="page" href="./index.php?content=c-home">Home</a>
+      </li>';
+          break;
+          case 'moderator':
+            echo '<li class="nav-item">
+        <a class="nav-link'; echo (in_array($active, ["m-home", ""])) ? "active" : "";  echo '" aria-current="page" href="./index.php?content=m-home">Home</a>
+      </li>';
+          break;
+          default:
+            echo '<li class="nav-item">
+        <a class="nav-link'; echo (in_array($active, ["a-home", ""])) ? "active" : "";  echo '" aria-current="page" href="./index.php?content=home">Home</a>
+      </li>';
+          break;
+        }
+      }else {
+        echo '<li class="nav-item">
+        <a class="nav-link'; echo (in_array($active, ["home", ""])) ? "active" : "";  echo '" aria-current="page" href="./index.php?content=home">Home</a>
+      </li>';
+      } 
+      ?>
         <li class="nav-item">
           <a class="nav-link <?php if ( $active == "iem" ) { echo "active"; }?>" href="./index.php?content=iem">IEM</a>
         </li>
@@ -35,12 +66,58 @@ if (isset($_GET["content"])) {
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link <?php if ( $active == "register" || $active == "" ) { echo "active"; }?>" href="./index.php?content=register">Registreer</a>
-        </li>
-      <li class="nav-item">
-        <a class="nav-link <?php if ( $active == "login" ) { echo "active"; }?>" href="./index.php?content=login">Aanmelden</a>
+      <?php if(isset($_SESSION["id"])){
+        switch($_SESSION["userrole"]){
+          case 'admin':
+
+            echo '       
+            
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Admin beheer
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="./index.php?content=a-users">Gebruikers</a></li>
+                  <li><a class="dropdown-item" href="./index.php?content=a-reset">Reset wachtwoorden</a></li>
+                </ul>
+              </li>
+          
+          ';
+
+          break;
+          case 'root':
+            echo '<li class="nav-item">
+            <a class="nav-link" href="./index.php?content=r-rootpage">Rootpage</a>
+          </li>';
+          break;
+          case 'moderator':
+
+          break;
+          case 'customer':
+          
+          break;
+          default:
+
+          break;
+        }
+
+        echo '<li class="nav-item">
+        <a class="nav-link'; if ( $active == "login" ) { echo "active"; } echo '" href="./index.php?content=login&logout">Uitloggen</a>
+      </li>';
+      }else {
+        echo '        <li class="nav-item">
+        <a class="nav-link'; if ( $active == "register" || $active == "" ) { echo "active"; } echo '" href="./index.php?content=register">Registreer</a>
       </li>
+    <li class="nav-item">
+      <a class="nav-link'; if ( $active == "login" ) { echo "active"; } echo '" href="./index.php?content=login">Aanmelden</a>
+    </li>';
+      }
+      
+      
+      
+      
+      
+      ?>
       </ul>
     </div>
   </div>
